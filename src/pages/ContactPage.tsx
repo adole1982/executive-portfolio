@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Send, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// SECURE ENDPOINT: Using Formspree ID to hide raw email from scrapers
 const FORMSPREE_URL = "https://formspree.io/f/mojkzgeb";
 
 export const ContactPage: React.FC = () => {
@@ -86,86 +87,84 @@ export const ContactPage: React.FC = () => {
               </p>
             </motion.div>
           ) : (
-<form onSubmit={handleSubmit} className="space-y-10 md:space-y-12" method="POST">
-  {/* 1. SECURE HONEYPOT: Invisible to humans, catches bots */}
-  <input type="text" name="_gotcha" style={{ display: 'none' }} />
+            <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12">
+              {/* HONEYPOT: Invisible spam protection */}
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
-  <div className="space-y-8">
-    <div className="relative group">
-      <input 
-        type="text" 
-        name="full-name"
-        required 
-        placeholder=" "
-        className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-      />
-      <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-        Full Name
-      </label>
-    </div>
+              <div className="space-y-8">
+                <div className="relative group">
+                  <input 
+                    type="text" 
+                    name="full-name"
+                    required 
+                    placeholder=" "
+                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                  />
+                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                    Full Name
+                  </label>
+                </div>
 
-    <div className="relative group">
-      <input 
-        type="text" 
-        name="company"
-        required 
-        placeholder=" "
-        className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-      />
-      <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-        Company
-      </label>
-    </div>
+                <div className="relative group">
+                  <input 
+                    type="text" 
+                    name="company"
+                    required 
+                    placeholder=" "
+                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                  />
+                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                    Company
+                  </label>
+                </div>
 
-    {/* 2. EMAIL VALIDATION: 'type="email"' catches missing @ or bad domains */}
-    <div className="relative group">
-      <input 
-        type="email" 
-        name="email"
-        required 
-        placeholder=" "
-        className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-      />
-      <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-        Email Address
-      </label>
-    </div>
+                <div className="relative group">
+                  <input 
+                    type="email" 
+                    name="email"
+                    required 
+                    placeholder=" "
+                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                  />
+                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                    Email Address
+                  </label>
+                </div>
 
-    <div className="relative group">
-      <textarea 
-        name="message"
-        required 
-        rows={4}
-        placeholder=" "
-        className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer resize-none"
-      />
-      <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-        Strategy Inquiry
-      </label>
-    </div>
-  </div>
+                <div className="relative group">
+                  <textarea 
+                    name="message"
+                    required 
+                    rows={4}
+                    placeholder=" "
+                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer resize-none"
+                  />
+                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                    Strategy Inquiry
+                  </label>
+                </div>
+              </div>
 
-  <button 
-    type="submit"
-    disabled={status !== 'idle'}
-    className="btn-apple w-full flex items-center justify-center gap-2 h-16 text-lg"
-  >
-    {status === 'idle' && (
-      <>
-        <span>Send Inquiry</span>
-        <Send size={20} />
-      </>
-    )}
-    {status === 'sending' && (
-      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-    )}
-  </button>
-</form>
+              <button 
+                type="submit"
+                disabled={status !== 'idle'}
+                className="btn-apple w-full flex items-center justify-center gap-2 h-16 text-lg"
+              >
+                {status === 'idle' && (
+                  <>
+                    <span>Send Inquiry</span>
+                    <Send size={20} />
+                  </>
+                )}
+                {status === 'sending' && (
+                  <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                )}
+              </button>
+            </form>
           )}
         </div>
       </main>
 
-      {/* Philadelphia Background Graphic - Positioned at the bottom of the page flow */}
       <div className="w-full h-[20vh] md:h-[30vh] pointer-events-none opacity-50 flex items-end justify-center mt-8 md:mt-12 mb-8">
         <img 
           src="/logos/philadelphia.png" 
