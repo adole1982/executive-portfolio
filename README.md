@@ -13,7 +13,7 @@ This project is a high-performance professional portfolio and AI strategy roadma
 
 ## Contact
 For inquiries regarding AI strategy, enterprise data governance, or professional collaboration, please use the "Send Inquiry" form on the contact page or reach out via:
-- **Email**: alexdole@gmail.com
+- **Contact: [Send a Strategy Inquiry](https://adole1982.github.io/executive-portfolio/contact)
 - **Location**: Philadelphia / Remote
 
 ---
