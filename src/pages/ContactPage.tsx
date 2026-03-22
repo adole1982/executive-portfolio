@@ -62,10 +62,7 @@ export const ContactPage: React.FC = () => {
           </p>
           
           <div className="space-y-6">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Email</p>
-              <p className="text-base md:text-lg font-medium text-slate-900">alexdole@gmail.com</p>
-            </div>
+            
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Location</p>
               <p className="text-base md:text-lg font-medium text-slate-900">Philadelphia / Remote</p>
