@@ -3,6 +3,11 @@ import { AnimatePresence } from 'framer-motion';
 import { HomePage } from './pages/HomePage';
 import { TimelinePage } from './pages/TimelinePage';
 import { ContactPage } from './pages/ContactPage';
+import { CredentialsPage } from './pages/CredentialsPage';
+import { TechStackPage } from './pages/TechStackPage';
+import { SolutionsPage } from './pages/SolutionsPage';
+import { SolutionsPageNew } from './pages/SolutionsPageNew';
+import { SolutionsPageThree } from './pages/SolutionsPageThree';
 import { ScrollToTop } from './components/ScrollToTop';
 
 const TechnicalBlueprint = () => (
@@ -29,15 +34,24 @@ const TechnicalBlueprint = () => (
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
   
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/timeline" element={<TimelinePage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        <Routes location={location}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
+          <Route path="/credentials" element={<CredentialsPage />} />
+          <Route path="/tech-stack" element={<TechStackPage />} />
+          <Route path="/solutions" element={<SolutionsPageNew />} />
+          <Route path="/solutions-original" element={<SolutionsPage />} />
+          <Route path="/solutions-three" element={<SolutionsPageThree />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </AnimatePresence>
+      {isHomePage && <TechnicalBlueprint />}
+    </>
   );
 }
 
@@ -46,7 +60,6 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <AnimatedRoutes />
-      <TechnicalBlueprint />
     </Router>
   );
 }

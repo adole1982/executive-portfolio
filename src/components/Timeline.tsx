@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import { motion, AnimatePresence } from 'framer-motion';
 import { timelineData, TimelineEvent } from '../constants';
-import { ChevronRight, Briefcase, GraduationCap, X } from 'lucide-react';
+import { FlyoutDrawer } from './FlyoutDrawer';
 
 export const Timeline: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 600 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 420 });
 
   useEffect(() => {
     const updateDimensions = () => {
       if (svgRef.current?.parentElement) {
         setDimensions({
           width: svgRef.current.parentElement.clientWidth,
-          height: 600
+          height: 420
         });
       }
     };
@@ -30,7 +29,7 @@ export const Timeline: React.FC = () => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
-    const margin = { top: 80, right: 150, bottom: 80, left: 150 };
+    const margin = { top: 220, right: 150, bottom: 10, left: 150 };
     const width = Math.max(dimensions.width - margin.left - margin.right, 1000); // Ensure minimum width for scrolling
     const height = dimensions.height - margin.top - margin.bottom;
 
@@ -38,12 +37,10 @@ export const Timeline: React.FC = () => {
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
     // Scales
-    const xScale = d3.scaleTime()
-      .domain([
-        d3.min(timelineData, d => d.date) as Date,
-        d3.max(timelineData, d => d.date) as Date
-      ])
-      .range([0, width]);
+    const xScale = (index: number) => {
+      if (timelineData.length <= 1) return 0;
+      return (index / (timelineData.length - 1)) * width;
+    };
 
     // Main Line (Axis)
     g.append("line")
@@ -54,6 +51,27 @@ export const Timeline: React.FC = () => {
       .attr("stroke", "#6B7280")
       .attr("stroke-width", 2);
 
+    const getStaggerIndex = (id: string) => {
+      switch (id) {
+        case 'lincoln-pdp':
+          return 1;
+        case 'lincoln-mgr-hr':
+          return 0;
+        case 'lincoln-mgr':
+          return 1;
+        case 'comcast-dir-di':
+          return 0;
+        case 'comcast-dir-analytics':
+          return 1;
+        case 'comcast-vp-data':
+          return 0;
+        case 'comcast-vp-ai':
+          return 1;
+        default:
+          return 0;
+      }
+    };
+
     // Nodes
     const nodes = g.selectAll(".node")
       .data(timelineData)
@@ -61,34 +79,10 @@ export const Timeline: React.FC = () => {
       .append("g")
       .attr("class", "node")
       .attr("transform", (d, i) => {
-        let x = xScale(d.date);
-        
-        // Move the most recent (2026) points halfway closer to the previous milestone (2018)
-        // to prevent cutoff and reduce the large visual gap.
-        if (d.date.getFullYear() === 2026) {
-          const prevX = xScale(new Date(2018, 0, 1));
-          x = prevX + (x - prevX) * 0.5;
-        }
-
-        // Move the first professional experience (2005) halfway closer to the start (2001)
-        // to reduce the large white space at the beginning.
-        if (d.id === 'lincoln-pdp') {
-          const startX = xScale(new Date(2001, 0, 1));
-          x = startX + (x - startX) * 0.5;
-        }
-
-        // Move Lincoln Manager (2008) slightly closer to the 2007 Education milestone
-        if (d.id === 'lincoln-mgr') {
-          const prevX = xScale(new Date(2007, 0, 1));
-          x = prevX + (x - prevX) * 0.2; // Move it significantly closer to the left
-        }
+        const x = xScale(i);
 
         if (d.type === 'work') {
-          // 3-level stagger for work to ensure no overlap
-          let staggerIndex = i % 3;
-          // Align Comcast Advertising with Comcast Director Analytics
-          if (d.id === 'comcast-vp-ai') staggerIndex = 0; 
-          
+          const staggerIndex = getStaggerIndex(d.id);
           const workStagger = staggerIndex * 80;
           const y = height / 2 - 60 - workStagger;
           return `translate(${x}, ${y})`;
@@ -147,7 +141,7 @@ export const Timeline: React.FC = () => {
           });
       })
       .on("click", (event, d) => {
-        setSelectedEvent(d);
+        setSelectedEvent(prev => prev?.id === d.id ? null : d);
       });
 
     // Vertical Connectors
@@ -156,11 +150,9 @@ export const Timeline: React.FC = () => {
       .attr("x1", 0)
       .attr("y1", 0)
       .attr("x2", 0)
-      .attr("y2", (d, i) => {
+      .attr("y2", (d) => {
         if (d.type === 'work') {
-          let staggerIndex = i % 3;
-          if (d.id === 'comcast-vp-ai') staggerIndex = 0;
-          
+          const staggerIndex = getStaggerIndex(d.id);
           const workStagger = staggerIndex * 80;
           return 60 + workStagger;
         } else {
@@ -230,19 +222,10 @@ export const Timeline: React.FC = () => {
       .attr("class", "uppercase tracking-[0.1em]")
       .text("Professional Experience");
 
-    svg.append("text")
-      .attr("x", 20)
-      .attr("y", dimensions.height - 20)
-      .attr("font-size", "14px")
-      .attr("font-weight", "700")
-      .attr("fill", "#374151")
-      .attr("class", "uppercase tracking-[0.1em]")
-      .text("Academic Foundation");
-
   }, [dimensions, selectedEvent]);
 
   return (
-    <div className="relative w-full min-h-[620px] flex flex-col overflow-x-auto">
+    <div className="relative w-full min-h-[420px] flex flex-col overflow-x-auto">
       <div className="flex-1 flex items-center min-w-[1200px]">
         <svg 
           ref={svgRef} 
@@ -252,95 +235,11 @@ export const Timeline: React.FC = () => {
         />
       </div>
 
-      <AnimatePresence>
-        {selectedEvent && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full md:max-w-md bg-white shadow-2xl z-50 overflow-y-auto border-l border-slate-100"
-          >
-            <div className="p-8 relative">
-              <button 
-                onClick={() => setSelectedEvent(null)}
-                className="absolute top-8 right-8 p-2 rounded-full hover:bg-slate-100 transition-colors"
-              >
-                <X size={24} className="text-slate-900" />
-              </button>
-
-              {selectedEvent.logoUrl && (
-                <div className="mb-4 pt-2">
-                  <img 
-                    src={selectedEvent.logoUrl} 
-                    alt={`${selectedEvent.organization} logo`}
-                    className={`${
-                      selectedEvent.id === 'upenn-ms-od' ? 'h-28' : 
-                      selectedEvent.type === 'education' ? 'h-20' : 'h-12'
-                    } w-auto object-contain`}
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              )}
-
-              <h2 className="text-3xl font-display font-bold text-slate-900 mb-6 leading-tight">
-                {selectedEvent.title}
-              </h2>
-              <p className="text-sm text-slate-600 mb-6 flex items-center gap-1">
-                <span className="opacity-80">{selectedEvent.location}</span>
-                <span className="mx-2 opacity-20">|</span>
-                <span className="opacity-80">{selectedEvent.period}</span>
-              </p>
-
-              <div className="space-y-8">
-                <section>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-4">
-                    {selectedEvent.type === 'work' ? 'Core Responsibilities' : 'Areas of Focus'}
-                  </h3>
-                  <ul className="space-y-3">
-                    {selectedEvent.responsibilities.map((item, i) => (
-                      <li key={i} className="flex gap-3 text-slate-800">
-                        <ChevronRight size={16} className="mt-1 text-slate-400 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                {selectedEvent.tech.length > 0 && (
-                  <section>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-4">
-                      {selectedEvent.id === 'upenn-ms-od' ? 'Core Competency' : 
-                       selectedEvent.id === 'jhu-ba' ? 'Strategic Value' : 'Tech Stack'}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedEvent.tech.map((t, i) => (
-                        <span key={i} className="px-3 py-1 bg-slate-50 text-slate-700 rounded-full text-sm border border-slate-100">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {selectedEvent.achievements.length > 0 && (
-                  <section>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-4">Key Achievements</h3>
-                    <ul className="space-y-3">
-                      {selectedEvent.achievements.map((item, i) => (
-                        <li key={i} className="flex gap-3 text-slate-800">
-                          <div className="w-1.5 h-1.5 rounded-full bg-slate-900 mt-2 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <FlyoutDrawer 
+        isOpen={selectedEvent !== null} 
+        onClose={() => setSelectedEvent(null)} 
+        event={selectedEvent} 
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Send, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Send, CheckCircle2 } from 'lucide-react';
+import { Navbar } from '../components/Navbar';
 
 // SECURE ENDPOINT: Using Formspree ID to hide raw email from scrapers
 const FORMSPREE_URL = "https://formspree.io/f/mojkzgeb";
@@ -44,25 +44,31 @@ export const ContactPage: React.FC = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen bg-white"
     >
-      <nav className="p-8">
-        <Link to="/" className="flex items-center gap-2 text-slate-700 hover:text-slate-900 transition-colors group">
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Back to Overview</span>
-        </Link>
-      </nav>
+      <Navbar />
 
-      <main className="max-w-7xl mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-8 md:pb-12 flex flex-col lg:flex-row gap-12 md:gap-24">
+      {/* Absolute Grid Background Layer - Standard Height */}
+      <div 
+        className="absolute top-[72px] left-0 right-0 h-[380px] pointer-events-none overflow-hidden"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-white" />
+      </div>
+
+      <main className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 pt-28 lg:pt-36 pb-8 md:pb-12 flex flex-col lg:flex-row gap-12 md:gap-24 relative z-10">
         <div className="lg:w-1/2">
           <h1 className="text-4xl md:text-7xl font-display font-bold text-slate-900 mb-4 md:mb-8 leading-tight">
             Connect & <br />
             <span className="italic font-normal text-slate-600">Strategize.</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-700 mb-8 md:mb-12 max-w-md leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-700 mb-8 md:mb-12 max-w-xl leading-relaxed">
             Drawing on 20 years of leadership within Fortune 100 environments to bridge the gap between complex data lifecycles and enterprise-scale AI enablement. From building high-performance analytical teams to translating deep technical architectures for senior executive audiences—let’s define the path forward.
           </p>
           
           <div className="space-y-6">
-            
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Location</p>
               <p className="text-base md:text-lg font-medium text-slate-900">Philadelphia / Remote</p>
@@ -70,95 +76,97 @@ export const ContactPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:w-1/2 lg:pt-52 pt-0">
-          {status === 'sent' ? (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-slate-50 p-12 rounded-3xl border border-slate-100 text-center"
-            >
-              <CheckCircle2 size={48} className="text-emerald-500 mx-auto mb-6" />
-              <h2 className="text-3xl font-display font-bold text-slate-900 mb-4">Thank you!</h2>
-              <p className="text-slate-600 text-lg">
-                Thank you, I will be in touch shortly.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12">
-              {/* HONEYPOT: Invisible spam protection */}
-              <input type="text" name="_gotcha" style={{ display: 'none' }} />
-
-              <div className="space-y-8">
-                <div className="relative group">
-                  <input 
-                    type="text" 
-                    name="full-name"
-                    required 
-                    placeholder=" "
-                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-                  />
-                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-                    Full Name
-                  </label>
-                </div>
-
-                <div className="relative group">
-                  <input 
-                    type="text" 
-                    name="company"
-                    required 
-                    placeholder=" "
-                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-                  />
-                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-                    Company
-                  </label>
-                </div>
-
-                <div className="relative group">
-                  <input 
-                    type="email" 
-                    name="email"
-                    required 
-                    placeholder=" "
-                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
-                  />
-                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-                    Email Address
-                  </label>
-                </div>
-
-                <div className="relative group">
-                  <textarea 
-                    name="message"
-                    required 
-                    rows={4}
-                    placeholder=" "
-                    className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer resize-none"
-                  />
-                  <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
-                    Strategy Inquiry
-                  </label>
-                </div>
-              </div>
-
-              <button 
-                type="submit"
-                disabled={status !== 'idle'}
-                className="btn-apple w-full flex items-center justify-center gap-2 h-16 text-lg"
+        <div className="lg:w-1/2 lg:pt-44 pt-0">
+          <div className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-100/50 relative z-20">
+            {status === 'sent' ? (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-6"
               >
-                {status === 'idle' && (
-                  <>
-                    <span>Send Inquiry</span>
-                    <Send size={20} />
-                  </>
-                )}
-                {status === 'sending' && (
-                  <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                )}
-              </button>
-            </form>
-          )}
+                <CheckCircle2 size={48} className="text-emerald-500 mx-auto mb-6" />
+                <h2 className="text-3xl font-display font-bold text-slate-900 mb-4">Thank you!</h2>
+                <p className="text-slate-600 text-lg">
+                  Thank you, I will be in touch shortly.
+                </p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12">
+                {/* HONEYPOT: Invisible spam protection */}
+                <input type="text" name="_gotcha" style={{ display: 'none' }} />
+
+                <div className="space-y-8">
+                  <div className="relative group">
+                    <input 
+                      type="text" 
+                      name="full-name"
+                      required 
+                      placeholder=" "
+                      className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                    />
+                    <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                      Full Name
+                    </label>
+                  </div>
+
+                  <div className="relative group">
+                    <input 
+                      type="text" 
+                      name="company"
+                      required 
+                      placeholder=" "
+                      className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                    />
+                    <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                      Company
+                    </label>
+                  </div>
+
+                  <div className="relative group">
+                    <input 
+                      type="email" 
+                      name="email"
+                      required 
+                      placeholder=" "
+                      className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer"
+                    />
+                    <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                      Email Address
+                    </label>
+                  </div>
+
+                  <div className="relative group">
+                    <textarea 
+                      name="message"
+                      required 
+                      rows={4}
+                      placeholder=" "
+                      className="w-full bg-transparent border-b border-slate-200 py-4 outline-none focus:border-slate-900 transition-colors peer resize-none"
+                    />
+                    <label className="absolute left-0 top-4 text-slate-600 pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-slate-900 peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-xs">
+                      Strategy Inquiry
+                    </label>
+                  </div>
+                </div>
+
+                <button 
+                  type="submit"
+                  disabled={status !== 'idle'}
+                  className="btn-apple w-full flex items-center justify-center gap-2 h-16 text-lg"
+                >
+                  {status === 'idle' && (
+                    <>
+                      <span>Send Inquiry</span>
+                      <Send size={20} />
+                    </>
+                  )}
+                  {status === 'sending' && (
+                    <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </main>
 

@@ -1,9 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Cpu, Database, Brain, Sparkles, GraduationCap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Navbar } from '../components/Navbar';
 
-const ROLES = ["THE ANALYST", "THE STRATEGIST", "AI LEADER"];
+const ROLES = ["THE ARCHITECT", "THE STRATEGIST", "AI LEADER"];
+
+// Custom icons for the bottom ecosystem shelf (matching user attachments)
+const N8nIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-700 fill-slate-700" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 2h2v2H4V2zm14 0h2v2h-2V2zM6 4h2v2H6V4zm10 0h2v2h-2V4zm-8 2h8v2H8V6zM4 8h16v4H4V8zm0 4h2v2H4v-2zm14 0h2v2h-2v-2zm-12 2h2v4H6v-4zm10 0h2v4h-2v-4z" />
+  </svg>
+);
+
+const AntigravityIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-700 fill-none stroke-slate-700" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 18c3-3.5 5.5-12 9-12s6 8.5 9 12" />
+  </svg>
+);
+
+const CopilotIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-700 fill-none stroke-slate-700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2a6 6 0 0 0-6 6v3a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6z" />
+    <rect x="7" y="11" width="10" height="4" rx="2" className="fill-slate-700 stroke-slate-700" />
+    <circle cx="9" cy="13" r="0.75" className="fill-white stroke-white" />
+    <circle cx="15" cy="13" r="0.75" className="fill-white stroke-white" />
+  </svg>
+);
+
+const VercelIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-700 fill-slate-700" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L2 22h20L12 2z" />
+  </svg>
+);
+
+const ReplitIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-700 fill-slate-700" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 4h14v4H2V4zm6 6h14v4H8v-4zm-6 6h14v4H2v-4z"/>
+  </svg>
+);
 
 export const HomePage: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -20,12 +55,15 @@ export const HomePage: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-white"
+      className="min-h-screen lg:h-screen flex flex-col justify-between bg-white relative overflow-hidden"
     >
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col md:flex-row items-stretch">
-        {/* Selective Color Portrait */}
-        <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative overflow-hidden bg-slate-950">
+      <Navbar />
+
+      {/* Main Split Content Area */}
+      <div className="flex-grow flex flex-col md:flex-row items-stretch w-full pt-16 md:pt-0">
+        
+        {/* Left Side: Selective Color Portrait (Equal half-width) */}
+        <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden bg-slate-950">
           {/* Faded Grayscale Background Layer */}
           <img 
             src="/myphoto.JPG" 
@@ -33,7 +71,7 @@ export const HomePage: React.FC = () => {
               (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000";
             }}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-20 scale-110 blur-[1px]"
+            className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-20 blur-[1px]"
             referrerPolicy="no-referrer"
           />
           
@@ -43,7 +81,7 @@ export const HomePage: React.FC = () => {
             onError={(e) => {
               (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000";
             }}
-            alt="Alexandre Paul Dole"
+            alt="Alexandre Dole"
             className="absolute inset-0 w-full h-full object-cover object-top contrast-110 brightness-105"
             style={{
               maskImage: 'radial-gradient(circle at 50% 30%, black 25%, transparent 70%)',
@@ -55,7 +93,7 @@ export const HomePage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 md:to-white" />
         </div>
 
-        {/* Hero Content */}
+        {/* Right Side: Hero Content (Equal half-width) */}
         <div className="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-white">
           <div className="flex flex-nowrap md:flex-wrap gap-1.5 md:gap-4 mb-12 overflow-x-auto md:overflow-visible no-scrollbar">
             {ROLES.map((role, i) => (
@@ -73,168 +111,71 @@ export const HomePage: React.FC = () => {
           </div>
 
           <h1 className="text-6xl lg:text-8xl font-display font-bold text-slate-900 mb-8 leading-[0.9] tracking-tighter">
-            ALEXANDRE PAUL DOLE
+            ALEXANDRE DOLE
           </h1>
           
           <div className="h-px w-24 bg-slate-200 mb-8" />
 
           <h2 className="text-3xl lg:text-5xl font-display font-medium text-slate-600 mb-12 tracking-tight">
-            DATA ANALYTICS <span className="opacity-20 mx-4">/</span> <br /> AI STRATEGY
+            AI STRATEGY <span className="opacity-20 mx-4">/</span> <br /> DATA ANALYTICS
           </h2>
           
           <div className="flex items-center gap-4 mb-16">
             <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
             <p className="text-xs lg:text-sm font-bold uppercase tracking-[0.3em] text-slate-800 leading-relaxed">
-              AI PLANNING & ENABLEMENT <span className="opacity-20 mx-4">|</span> <br /> ARCHITECTING ENTERPRISE DATA STRATEGY
+              AI PLANNING &amp; ENABLEMENT <span className="opacity-20 mx-4">|</span> <br /> ARCHITECTING ENTERPRISE DATA STRATEGY
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-8">
             <Link to="/timeline" className="btn-apple group flex items-center justify-center gap-4 px-12 py-5 text-lg">
-              <span>Explore Technical Evolution</span>
+              <span>Explore Leadership Journey</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link to="/contact" className="btn-outline flex items-center justify-center px-12 py-5 text-lg">
-              Connect & Strategize
+              Connect &amp; Strategize
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* AI Co-pilot Section */}
-      <section className="py-32 px-8 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-600 mb-4">The Engine Room</h3>
-              <h2 className="text-5xl font-display font-bold text-slate-900">ACTIVE TECH STACK</h2>
-            </div>
-            <p className="text-slate-700 max-w-md text-lg leading-relaxed">
-              Leveraging state-of-the-art AI models and data infrastructure to build 
-              autonomous systems that drive real business value.
-            </p>
-          </div>
+      </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {[
-              { name: 'GitHub Copilot', icon: <Cpu />, desc: 'Accelerated Development' },
-              { name: 'Gemini', icon: <Sparkles />, desc: 'Multimodal Intelligence' },
-              { name: 'ChatGPT', icon: <Brain />, desc: 'Advanced Reasoning' },
-              { name: 'Claude', icon: <Database />, desc: 'Long-context Analysis' }
-            ].map((tool) => (
-              <div key={tool.name} className="p-6 md:p-8 bg-white rounded-3xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all group">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-slate-50 flex items-center justify-center mb-4 md:mb-6 text-slate-900 group-hover:bg-blue-800 group-hover:text-white transition-colors">
-                  {tool.icon}
-                </div>
-                <h4 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-[#1E40AF] mb-1 md:mb-2 transition-colors">{tool.name}</h4>
-                <p className="text-slate-600 text-xs md:text-sm">{tool.desc}</p>
-              </div>
-            ))}
-          </div>
+      <footer className="w-full border-t border-slate-100 bg-white py-10 px-6 md:px-16 flex flex-col lg:flex-row items-start lg:items-center justify-start gap-x-12 gap-y-6 z-10">
+        <div className="text-[13px] font-bold uppercase tracking-[0.25em] text-slate-500 md:whitespace-nowrap">
+          Orchestration &amp; Development Ecosystem
         </div>
-      </section>
-
-      {/* Education Section */}
-      <section className="pt-32 pb-16 px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-20">
-            <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-slate-600 mb-4">Academic Foundation</h3>
-            <h2 className="text-5xl font-display font-bold text-slate-900">EDUCATION</h2>
+        <div className="flex-grow flex flex-wrap items-center justify-between gap-y-4">
+          <img src="/logos/n8n.jpg" alt="n8n" className="h-8 w-auto object-contain cursor-default" />
+          
+          <div className="flex items-center gap-2 text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-default">
+            <img src="/logos/antigravity.jpg" alt="Antigravity" className="h-8 w-auto object-contain" />
+            Antigravity
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* JHU AI */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all group">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <img 
-                  src="/logos/JHU_engineering.png" 
-                  alt="JHU Engineering" 
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-[#1E40AF] mb-1 transition-colors">Johns Hopkins University</h4>
-                <p className="text-base sm:text-lg font-medium text-slate-700 mb-3 sm:mb-4 leading-snug">Candidate for Master of Science in Artificial Intelligence (Engineering)</p>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
-                  AI Strategy, Governance, and Ethics. Currently developing expertise in the orchestration of AI-enabled systems, MLOps infrastructure, and the strategic deployment of enterprise-scale generative AI.
-                </p>
-              </div>
-            </div>
-
-            {/* UPenn */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all group">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <img 
-                  src="/logos/upenn.png" 
-                  alt="UPenn" 
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-[#1E40AF] mb-1 transition-colors">University of Pennsylvania</h4>
-                <p className="text-base sm:text-lg font-medium text-slate-700 mb-3 sm:mb-4 leading-snug">Master of Science in Organizational Dynamics</p>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
-                  Concentration in Project Management. Focused on leading high-stakes technical transformations, organizational change, and aligning engineering workflows with human-centric delivery.
-                </p>
-              </div>
-            </div>
-
-            {/* SJU */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all group">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <img 
-                  src="/logos/sju_big.png" 
-                  alt="SJU" 
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-[#1E40AF] mb-1 transition-colors">St. Joseph’s University</h4>
-                <p className="text-base sm:text-lg font-medium text-slate-700 mb-3 sm:mb-4 leading-snug">Master of Science in Business Intelligence & Analytics</p>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
-                  Specialized in Predictive Modeling and Decision Science. Focused on aligning analytical ecosystems with executive-level portfolio prioritization and ROI.
-                </p>
-              </div>
-            </div>
-
-            {/* JHU Psych */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all group">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <img 
-                  src="/logos/jhu.png" 
-                  alt="JHU" 
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-[#1E40AF] mb-1 transition-colors">Johns Hopkins University</h4>
-                <p className="text-base sm:text-lg font-medium text-slate-700 mb-3 sm:mb-4 leading-snug">B.A. in Psychology | Minor in Entrepreneurship</p>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
-                  Foundational behavioral science and venture development. Focused on user-centric data strategy and the psychological frameworks of business scaling.
-                </p>
-              </div>
-            </div>
+          <div className="flex items-center gap-2 text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-default">
+            <img src="/logos/cursor.png" alt="Cursor" className="h-8 w-auto object-contain" />
+            Cursor
           </div>
+          
+          <div className="flex items-center gap-2 text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-default">
+            <img src="/logos/claude_code.jpg" alt="Claude Code" className="h-8 w-auto object-contain" />
+            Claude Code
+          </div>
+          
+          <div className="flex items-center gap-2 text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-default">
+            <img src="/logos/github.jpg" alt="GitHub" className="h-8 w-auto object-contain" />
+            GitHub
+          </div>
+          
+          <div className="flex items-center gap-2 text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-default">
+            <img src="/logos/githubcopilot.jpg" alt="GitHub Copilot" className="h-8 w-auto object-contain" />
+            Github Copilot
+          </div>
+          
+          <img src="/logos/vercel.jpg" alt="Vercel" className="h-8 w-auto object-contain cursor-default" />
+          <img src="/logos/replit.jpg" alt="Replit" className="h-8 w-auto object-contain cursor-default" />
         </div>
-      </section>
-
-      {/* Footer CTA */}
-      <section className="pt-12 pb-2 px-8 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-slate-600 text-sm font-medium tracking-widest uppercase">
-            © 2026 Alexandre Paul Dole
-          </p>
-          <Link to="/contact" className="text-slate-900 font-bold flex items-center gap-2 group">
-            <span>Connect & Strategize</span>
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-      </section>
+      </footer>
     </motion.div>
   );
 };
-// Production Build Sync: March 2026

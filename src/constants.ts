@@ -19,8 +19,8 @@ export interface TimelineEvent {
 export const timelineData: TimelineEvent[] = [
   {
     id: 'comcast-vp-ai',
-    title: "VP, AI Planning & Enablement",
-    organization: "Comcast Advertising",
+    title: "VP, AI Planning & Enablement (Comcast Advertising)",
+    organization: "Comcast",
     location: "Philadelphia, PA",
     period: "2025 – Present",
     startYear: 2025,
@@ -30,17 +30,10 @@ export const timelineData: TimelineEvent[] = [
       "Strategic Agentic Frameworks: Facilitating high-level technical forums between Enterprise Architecture and Business Units to define standard AI development protocols, including the adoption of the Model Context Protocol (MCP) for data interoperability.",
       "Governance & Standardization: Leading the inquiry and defining the enterprise norms for how AI is built and deployed, ensuring consistent architectural standards and operational excellence across the organization."
     ],
-    tech: [
-      "Model Context Protocol (MCP)",
-      "Agentic AI Framework Design",
-      "Enterprise AI Governance Standards"
-    ],
-    achievements: [
-      "Executive AI Steering Committee: Established a centralized forum to synchronize the AI roadmap across Ad Tech and Media Sales and maximize the collective scale of the organization.",
-      "Strategic Orchestrator: Defining the 'Rules of the Road' for enterprise AI, ensuring that technical innovation aligns with global operational standards."
-    ],
+    tech: [],
+    achievements: [],
     date: new Date(2025, 0, 1),
-    logoUrl: "/logos/advertising.png"
+    logoUrl: "/logos/comcast.png"
   },
   {
     id: 'comcast-vp-data',
@@ -146,6 +139,21 @@ export const timelineData: TimelineEvent[] = [
     logoUrl: "/logos/lfg.png"
   },
   {
+    id: 'lincoln-mgr-hr',
+    title: "Manager, HR",
+    organization: "Lincoln Financial Group",
+    location: "Philadelphia, PA",
+    period: "2008 – 2010",
+    startYear: 2008,
+    endYear: 2010,
+    type: 'work' as const,
+    responsibilities: [],
+    tech: [],
+    achievements: [],
+    date: new Date(2008, 0, 1),
+    logoUrl: "/logos/lfg.png"
+  },
+  {
     id: 'lincoln-pdp',
     title: "Professional Development Program (Rotational)",
     organization: "Lincoln Financial Group",
@@ -167,32 +175,10 @@ export const timelineData: TimelineEvent[] = [
     achievements: [],
     date: new Date(2005, 0, 1),
     logoUrl: "/logos/lfg.png"
-  },
-  {
-    id: 'jhu-ms-ai',
-    title: "M.S., Artificial Intelligence",
-    organization: "The Johns Hopkins University",
-    location: "Baltimore, MD",
-    period: "2026 – 2029",
-    startYear: 2026,
-    endYear: 2029,
-    type: 'education' as const,
-    responsibilities: [
-      "Advanced AI Systems Engineering: Design, development, and deployment of autonomous systems.",
-      "Agentic Frameworks & RAG: Applying hands-on experience with LangChain and Retrieval-Augmented Generation to engineer data-driven AI agents.",
-      "Strategic AI Orchestration: Bridging the gap between technical AI capabilities and enterprise-level business objectives."
-    ],
-    tech: [
-      "Autonomous Systems Architecture",
-      "Machine Learning Operations (MLOps)",
-      "Natural Language Processing (NLP)"
-    ],
-    achievements: [
-      "Builder-Leader Integration: Targeted expertise in transitioning from 'Data Analysis' to 'AI Construction' to build and scale enterprise AI tools."
-    ],
-    date: new Date(2026, 0, 1),
-    logoUrl: "/logos/JHU_engineering.png"
-  },
+  }
+].sort((a, b) => a.date.getTime() - b.date.getTime());
+
+export const academicData: TimelineEvent[] = [
   {
     id: 'sju-ms-bi',
     title: "M.S., Business Intelligence & Analytics",
@@ -209,8 +195,7 @@ export const timelineData: TimelineEvent[] = [
     ],
     tech: [
       "SAS / JMP / Tableau",
-      "Hadoop / Oracle",
-      "AHT Forecasting Models"
+      "Hadoop / Oracle"
     ],
     achievements: [
       "Operational Decision Science: Successfully aligned analytical ecosystems with executive-level portfolio prioritization and strategic 'Source of Truth' creation."
@@ -237,9 +222,7 @@ export const timelineData: TimelineEvent[] = [
       "Executive Coaching Frameworks",
       "Global Organizational Governance"
     ],
-    achievements: [
-      "Strategic Diplomat: Leveraged Ivy League and European institutional training to navigate complex political and operational landscapes."
-    ],
+    achievements: [],
     date: new Date(2007, 0, 1),
     logoUrl: "/logos/upenn.png"
   },
@@ -269,4 +252,3 @@ export const timelineData: TimelineEvent[] = [
     logoUrl: "/logos/jhu.png"
   }
 ].sort((a, b) => a.date.getTime() - b.date.getTime());
-// Production Build Sync: March 2026
