@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen lg:h-screen flex flex-col justify-between bg-white relative overflow-hidden"
+      className="min-h-screen lg:h-screen flex flex-col justify-between bg-white relative lg:overflow-auto"
     >
       <Navbar />
 
