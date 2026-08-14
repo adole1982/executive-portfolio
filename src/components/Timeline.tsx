@@ -184,6 +184,8 @@ export const Timeline: React.FC = () => {
     // Title Text
     nodes.append("text")
       .attr("class", "title-text italic font-serif")
+      .style("font-variant-numeric", "lining-nums")
+      .style("font-feature-settings", '"lnum" 1')
       .attr("text-anchor", "middle")
       .attr("font-size", "12.5px")
       .attr("font-weight", "400")

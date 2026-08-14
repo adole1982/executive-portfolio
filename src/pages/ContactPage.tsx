@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, Linkedin, ExternalLink } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 
 // SECURE ENDPOINT: Using Formspree ID to hide raw email from scrapers
@@ -72,6 +72,20 @@ export const ContactPage: React.FC = () => {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Location</p>
               <p className="text-base md:text-lg font-medium text-slate-900">Philadelphia / Remote</p>
+            </div>
+
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-1">Direct Network</p>
+              <a
+                href="https://www.linkedin.com/in/alexdole/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-base md:text-lg font-medium text-slate-900 hover:text-[#0A66C2] transition-colors group"
+              >
+                <Linkedin size={19} className="text-[#0A66C2] group-hover:scale-110 transition-transform" />
+                <span className="border-b border-slate-300 group-hover:border-[#0A66C2] transition-colors pb-0.5">linkedin.com/in/alexdole</span>
+                <ExternalLink size={14} className="text-slate-400 group-hover:text-[#0A66C2] transition-colors" />
+              </a>
             </div>
           </div>
         </div>

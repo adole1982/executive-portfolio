@@ -37,8 +37,8 @@ export const TimelinePage: React.FC = () => {
           
           <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10">
             <header className="max-w-4xl">
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-slate-900 mb-3 md:mb-6 leading-tight">
-                The Technical <br />
+              <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-4 md:mb-6 leading-tight tracking-tight">
+                The Career <br />
                 <span className="italic font-normal text-slate-600">Evolution.</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-normal">

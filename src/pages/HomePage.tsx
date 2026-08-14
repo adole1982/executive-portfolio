@@ -129,7 +129,7 @@ export const HomePage: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row md:flex-col xl:flex-row gap-4 sm:gap-6 xl:gap-8">
             <Link to="/timeline" className="btn-apple group flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-8 xl:px-12 py-4 lg:py-5 text-base sm:text-lg text-center whitespace-nowrap">
-              <span>Explore Leadership Journey</span>
+              <span>Explore Career Evolution</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
             <Link to="/contact" className="btn-outline flex items-center justify-center px-6 sm:px-8 xl:px-12 py-4 lg:py-5 text-base sm:text-lg text-center whitespace-nowrap">

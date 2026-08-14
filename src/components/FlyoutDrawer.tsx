@@ -53,8 +53,17 @@ export const FlyoutDrawer: React.FC<FlyoutDrawerProps> = ({ isOpen, onClose, eve
                 </div>
               )}
 
-              <h2 className="text-3xl font-display font-bold text-slate-900 mb-6 leading-tight">
-                {event.title}
+              <h2 className="text-3xl font-display font-bold text-slate-900 mb-6 leading-tight [font-variant-numeric:lining-nums] [font-feature-settings:'lnum'_1]">
+                {event.title.includes(' (') ? (
+                  <>
+                    <span>{event.title.split(' (')[0]}</span>
+                    <span className="block text-2xl font-normal text-slate-600 mt-1">
+                      ({event.title.split(' (')[1]}
+                    </span>
+                  </>
+                ) : (
+                  event.title
+                )}
               </h2>
               <p className="text-sm text-slate-600 mb-6 flex items-center gap-1">
                 <span className="opacity-80">{event.location}</span>

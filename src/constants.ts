@@ -22,22 +22,35 @@ export const timelineData: TimelineEvent[] = [
     title: "VP, AI Planning & Enablement (Comcast Advertising)",
     organization: "Comcast",
     location: "Philadelphia, PA",
-    period: "2025 – Present",
-    startYear: 2025,
-    endYear: 2026, // Current year + 1 for visualization
+    period: "Jan 2026 – Aug 2026",
+    startYear: 2026,
+    endYear: 2026,
     type: 'work' as const,
     responsibilities: [
-      "Strategic Agentic Frameworks: Facilitating high-level technical forums between Enterprise Architecture and Business Units to define standard AI development protocols, including the adoption of the Model Context Protocol (MCP) for data interoperability.",
-      "Governance & Standardization: Leading the inquiry and defining the enterprise norms for how AI is built and deployed, ensuring consistent architectural standards and operational excellence across the organization."
+      "Enterprise AI Strategy & Governance: Architected an AI governance framework unifying legal, privacy, and technical intake to eliminate redundant software spend, optimize capital allocation, and establish rigorous go/no-go criteria for AI pilots.",
+      "Pitch-to-Pay Transformation: Led cross-functional alignment with executive leaders to define AI roadmaps across the commercial lifecycle—from demand generation and pitch automation to backend system integration—expanding pitch velocity and automating backend execution.",
+      "Workforce Enablement & Scaled Infrastructure: Built enablement infrastructure, including a centralized AI portal, to rapidly onboard employees across productivity platforms and specialized developer tools.",
+      "Hands-On Agent & Workflow Prototyping: Directly designed AI agent and workflow prototypes to test feasibility, clear organizational friction, and establish actionable go/no-go guidance."
     ],
-    tech: [],
-    achievements: [],
-    date: new Date(2025, 0, 1),
+    tech: [
+      "Copilot Studio",
+      "ChatGPT Enterprise",
+      "M365 Copilot",
+      "Glean",
+      "GitHub Copilot",
+      "Replit",
+      "Model Context Protocol (MCP)"
+    ],
+    achievements: [
+      "Scaled AI Adoption: Rapidly enabled employees with a tiered AI tool ecosystem and centralized enablement portal.",
+      "Pilots & Prototypes: Led hands-on pilots and prototypes with go/no-go frameworks focused on high-yield initiatives."
+    ],
+    date: new Date(2026, 0, 1),
     logoUrl: "/logos/comcast.png"
   },
   {
     id: 'comcast-vp-data',
-    title: "AVP, Strategic Operations & Analytics (Impact & Inclusion)",
+    title: "VP1, Strategic Ops & Data Analytics (Impact & Inclusion)",
     organization: "Comcast",
     location: "Philadelphia, PA",
     period: "2018 – 2025",
@@ -45,25 +58,31 @@ export const timelineData: TimelineEvent[] = [
     endYear: 2025,
     type: 'work' as const,
     responsibilities: [
-      "Enterprise Analytics Transformation: Spearheaded the shift from U.S.-only reporting to global enterprise-wide reporting as well as business-unit-specific reporting.",
-      "Strategic PMO Leadership: Led the Project Management Office for high-stakes corporate programs, ensuring operational excellence and cross-functional execution.",
-      "External Governance: Managed the Impact & Inclusion Council, facilitating strategic engagement with external advisors to guide enterprise-level accountability."
+      "Regulatory & Governance Infrastructure: Architected data infrastructure validating compliance with FCC commitments, Congressional inquiries, and Board reporting, protecting brand trust and supporting multi-billion-dollar transaction regulatory approvals.",
+      "Enterprise Analytics Standardization: Established unified data standards and audit-ready dashboards delivering actionable operational intelligence, enabling Government Affairs to engage officials and drive municipal expansion.",
+      "High-Visibility Strategic PMO: Directed PMO operations for an external Advisory Council of national leaders, synthesizing stakeholder input and overseeing multi-year program execution across enterprise units.",
+      "Pioneered AI-Driven Insight Delivery: Developed Generative AI and NLP proof-of-concepts (knowledge assistants, conversational query interfaces, text analytics) to demonstrate how advanced tools accelerate insight extraction from complex governance data."
     ],
     tech: [
-      "SQL Server / Tableau",
-      "Workday (HRIS) / CyberGrants Integration",
-      "Global Ecosystem Data Governance (Comcast, NBCU, Sky)"
+      "Generative AI / NLP POCs",
+      "Tableau",
+      "SQL Server",
+      "Workday HRIS",
+      "CyberGrants",
+      "Enterprise Data Governance",
+      "Huggingface",
+      "Streamlit"
     ],
     achievements: [
       "Strategic Infrastructure Architect: Designed and scaled the data framework used to track and report on Comcast’s $100M commitment to social justice and digital equity.",
-      "Executive Decision Engine: Unified fragmented global data into a single, executive-ready decision engine for the Executive Leadership Team (ELT)."
+      "Executive Decision Engine: Unified fragmented global data across Comcast, NBCUniversal, and Sky into an audit-ready executive decision suite."
     ],
     date: new Date(2018, 0, 1),
     logoUrl: "/logos/comcast.png"
   },
   {
     id: 'comcast-dir-analytics',
-    title: "Sr Director, Analytics (CX Tools & Technology)",
+    title: "Senior Director, Analytics (Customer Experience)",
     organization: "Comcast",
     location: "Philadelphia, PA",
     period: "2015 – 2018",
@@ -71,25 +90,32 @@ export const timelineData: TimelineEvent[] = [
     endYear: 2018,
     type: 'work' as const,
     responsibilities: [
-      "Analytics Center of Excellence (CoE): Established and led a 4-pillar CoE (Service, Knowledge Management, New Feature Rollout, and Advanced Analytics) to standardize CX Tool & Technology data strategy.",
-      "Enterprise 'Source of Truth': Owned the centralized database and reporting architecture used by HQ and all regional divisions to measure agent tool performance.",
-      "Product & Engineering Partnership: Acted as the strategic bridge to Technology teams, using data to identify and resolve latency, response time, and system outages."
+      "3-Tier Analytics Framework: Architected multi-layered reporting across Performance (system stability, latency, error rates), Usage (tool adoption, feature utilization, targeted training), and Effectiveness (workflow step reduction, FCR, NPS).",
+      "Next-Gen Desktop Rollout: Leveraged objective performance analytics to build cross-divisional alignment, validate system reliability, and transition field operations off legacy infrastructure with zero service disruption.",
+      "Analytics Center of Excellence: Managed 50+ production dashboards aligning Product and Engineering roadmaps directly with frontline operational performance."
     ],
     tech: [
-      "Hadoop / Netezza / Kafka / MongoDB",
-      "AWS Cloud (Early Stage Testing)",
-      "Pentaho / SQL Server / Oracle"
+      "Hadoop",
+      "Netezza",
+      "Kafka",
+      "MongoDB",
+      "Pentaho",
+      "SQL Server",
+      "Oracle",
+      "AWS",
+      "Tableau",
+      "SAS"
     ],
     achievements: [
-      "Einstein 360 Strategic Data Partner: Architected the comprehensive reporting infrastructure for the enterprise-wide rollout of Einstein 360 to 10,000+ agents.",
-      "Operational Correlation: Directly linked tool performance with key improvements in AHT (Average Handle Time), FCR (First Call Resolution), and NPS."
+      "Multi-Million Dollar Efficiency: Identified and eliminated redundant agent workflows, generating multi-million-dollar annual operational savings.",
+      "Technology Migration: Seamlessly transitioned frontline agents to next-gen desktop platforms while ensuring stability in Average Handle Time (AHT), First Call Resolution, and NPS, while reducing escalations."
     ],
     date: new Date(2015, 0, 1),
     logoUrl: "/logos/comcast.png"
   },
   {
     id: 'comcast-dir-di',
-    title: "Director, Reporting & Analytics (DE&I)",
+    title: "Senior Director, Analytics (Impact & Inclusion)",
     organization: "Comcast",
     location: "Philadelphia, PA",
     period: "2011 – 2015",
@@ -97,25 +123,26 @@ export const timelineData: TimelineEvent[] = [
     endYear: 2015,
     type: 'work' as const,
     responsibilities: [
-      "Unified Data Environments: Architected the first integrated data environments for HR, Programming, and Procurement to drive enterprise-wide transparency.",
-      "Standardizing Data Strategy: Established the governance frameworks and data standards required for long-term organizational transformation.",
-      "Executive & Board Reporting: Developed high-trust reporting structures for the Board of Directors and External Advisory Council."
+      "Post-Merger Enterprise Data Integration: Aggregated disparate data systems across combined corporate entities (Workforce, Supplier Diversity, Content Hours, Community Investment) into an audit-ready reporting framework.",
+      "Regulatory Governance (FCC / DOJ): Governed analytics fulfilling federal merger commitments and established quarterly reporting rhythms for the Board of Directors and External Advisory Council.",
+      "Strategic Capital Allocation: Analyzed cross-functional performance data to pinpoint operational gaps, advising executive leadership on strategic budget allocations and pipeline investments."
     ],
     tech: [
-      "SAP / SAP Workforce Analytics",
-      "Oracle (Procurement) / SQL Server Integration",
-      "Tableau (Executive-Level Visualization)"
+      "SAP Workforce Analytics",
+      "Oracle",
+      "SQL Server",
+      "Tableau"
     ],
     achievements: [
-      "Inaugural Benchmarking Framework: Delivered the company’s first unified benchmarking report, creating the technical foundation for the annual Comcast Impact Report.",
-      "Data Integrity Oversight: Ensured rigorous standards across multiple enterprise inputs to maintain a single, 'Board-ready' source of truth."
+      "Inaugural Industry Benchmarks: Built the analytics foundation for Comcast's annual corporate reporting, securing top-tier industry benchmark rankings.",
+      "Rapid Advancement: Promoted twice across 4 years (Sr. Manager → Director → Sr. Director) to scale the enterprise analytics practice."
     ],
     date: new Date(2011, 0, 1),
     logoUrl: "/logos/comcast.png"
   },
   {
     id: 'lincoln-mgr',
-    title: "Manager, Planning & Analytics",
+    title: "Manager, Planning & Analytics (HR)",
     organization: "Lincoln Financial Group",
     location: "Philadelphia, PA",
     period: "2010 – 2011",
@@ -123,39 +150,46 @@ export const timelineData: TimelineEvent[] = [
     endYear: 2011,
     type: 'work' as const,
     responsibilities: [
-      "Enterprise HR Data Consolidation: Replaced siloed, business-line-specific spreadsheets with a single, unified enterprise view of the workforce for the CEO and CHRO.",
-      "Executive Planning & Governance: Standardized HR data governance to ensure consistency across diverse functions and business units.",
-      "Strategic ROI Modeling: Developed financial impact models for 'big-ticket' budget requests, including large-scale HRIS platform transformations."
+      "Executive Reporting Suite: Architected the enterprise's first centralized reporting suite for the CEO and CHRO, unifying fragmented HR data across business units.",
+      "Governance & Health Metrics: Standardized enterprise HR data governance to reliably evaluate organizational health and justify executive budget allocations.",
+      "Strategic ROI Modeling: Managed HR Budget and developed financial feasibility and impact models for large-scale HRIS platform transformations."
     ],
     tech: [
-      "Evolved Analytics Stack (Tableau, Crystal Reports, Excel)",
-      "Executive Dashboard Optimization",
-      "HRIS Platform Data Modeling"
+      "Tableau",
+      "Crystal Reports",
+      "Excel",
+      "HRIS Data Modeling"
     ],
     achievements: [
-      "First Unified HR Data Environment: Architected the organization’s first centralized people-data ecosystem for strategic C-suite decision-making."
+      "Foundational People-Data Ecosystem: Unified fragmented HR data and established governance to evaluate organizational health and justify budget allocation."
     ],
     date: new Date(2010, 0, 1),
     logoUrl: "/logos/lfg.png"
   },
   {
     id: 'lincoln-mgr-hr',
-    title: "Manager, HR",
+    title: "Manager, Business Partner (HR)",
     organization: "Lincoln Financial Group",
     location: "Philadelphia, PA",
     period: "2008 – 2010",
     startYear: 2008,
     endYear: 2010,
     type: 'work' as const,
-    responsibilities: [],
-    tech: [],
+    responsibilities: [
+      "Enterprise Consulting: Provided strategic HR consulting to executive leadership across Finance, Legal, Marketing, and HR during corporate restructuring."
+    ],
+    tech: [
+      "Organizational Design",
+      "Change Management",
+      "Matrixed Operations"
+    ],
     achievements: [],
     date: new Date(2008, 0, 1),
     logoUrl: "/logos/lfg.png"
   },
   {
     id: 'lincoln-pdp',
-    title: "Professional Development Program (Rotational)",
+    title: "Associate, Professional Development Program (Rotational)",
     organization: "Lincoln Financial Group",
     location: "Philadelphia, PA",
     period: "2005 – 2008",
@@ -163,16 +197,19 @@ export const timelineData: TimelineEvent[] = [
     endYear: 2008,
     type: 'work' as const,
     responsibilities: [
-      "Cross-Functional Rotations: Completed high-impact rotations across Talent Acquisition, Executive Compensation, and HR Business Partner.",
-      "Strategic Reorganization: Partnered with executive leadership to execute organizational design and restructuring initiatives.",
-      "Corporate Advocacy Support: Collaborated with government relations to brief legislative staffers on the economic benefits of long-term savings products."
+      "Leadership Rotation: Completed a selective 3-year leadership development program spanning Compensation & Retirement Benefits, HR Business Partnering, and Talent Acquisition.",
+      "Organizational Design: Partnered with executive leaders to drive organizational design and process optimization projects.",
+      "Budget Management: Led Budget Management efforts for Human Resources, preparing financial briefings and reports for CHRO and executive team."
     ],
     tech: [
-      "Process Optimization (Escheatment Workflows)",
-      "Collaborative Strategy & Executive Pitching",
-      "Compensation & Retirement Benchmarking"
+      "Compensation & Benefits Analysis",
+      "Process Optimization",
+      "Workforce Modeling",
+      "Budget Management"
     ],
-    achievements: [],
+    achievements: [
+      "Rotational Graduate: Successfully delivered business impact across 3 separate functional rotations, accelerating promotion into management."
+    ],
     date: new Date(2005, 0, 1),
     logoUrl: "/logos/lfg.png"
   }

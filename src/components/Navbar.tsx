@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Linkedin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Navbar: React.FC = () => {
@@ -76,6 +76,17 @@ export const Navbar: React.FC = () => {
               </Link>
             );
           })}
+
+          <a
+            href="https://www.linkedin.com/in/alexdole/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-[#0A66C2] transition-colors p-1"
+            title="Alex Dole on LinkedIn"
+            aria-label="Alex Dole on LinkedIn"
+          >
+            <Linkedin size={19} />
+          </a>
         </nav>
 
         {/* Mobile Hamburger Toggle Button */}
@@ -118,6 +129,17 @@ export const Navbar: React.FC = () => {
                   </Link>
                 );
               })}
+
+              <a
+                href="https://www.linkedin.com/in/alexdole/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-[0.18em] transition-all duration-200 flex items-center justify-between text-slate-600 hover:bg-slate-50 hover:text-[#0A66C2]"
+              >
+                <span>LinkedIn</span>
+                <Linkedin size={18} className="text-[#0A66C2]" />
+              </a>
             </div>
           </motion.div>
         )}
