@@ -9,6 +9,7 @@ import { SolutionsPage } from './pages/SolutionsPage';
 import { SolutionsPageNew } from './pages/SolutionsPageNew';
 import { SolutionsPageThree } from './pages/SolutionsPageThree';
 import { ScrollToTop } from './components/ScrollToTop';
+import { Analytics } from '@vercel/analytics/react';
 
 const TechnicalBlueprint = () => (
   <div 
@@ -60,6 +61,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <AnimatedRoutes />
+      <Analytics />
     </Router>
   );
 }
